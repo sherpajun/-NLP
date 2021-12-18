@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import ssl
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-
+#네이버 기사 가져오기 연습용
 
 
 url='https://news.naver.com/main/read.naver?mode=LSD&mid=shm&sid1=104&oid=008&aid=0004684920'
