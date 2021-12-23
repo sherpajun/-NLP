@@ -1,2 +1,4 @@
 # PythonNLP
- Pratice
+
+Pratice
+Change Tf-idf
