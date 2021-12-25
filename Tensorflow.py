@@ -37,3 +37,22 @@ for example, label in train_dataset.take(1):
     print('texts: ', example.numpy()[:3])
     print()
     print('labels: ', label.numpy()[:3])
+
+
+VOCAB_SIZE = 1000
+encoder = tf.keras.layers.TextVectorization(
+    max_tokens=VOCAB_SIZE)
+encoder.adapt(train_dataset.map(lambda text, label: text))
+
+vocab = np.array(encoder.get_vocabulary())
+vocab[:20]
+
+
+encoded_example = encoder(example)[:3].numpy()
+encoded_example
+
+
+for n in range(3):
+    print("Original: ", example[n].numpy())
+    print("Round-trip: ", " ".join(vocab[encoded_example[n]]))
+    print()
