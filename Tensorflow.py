@@ -56,3 +56,31 @@ for n in range(3):
     print("Original: ", example[n].numpy())
     print("Round-trip: ", " ".join(vocab[encoded_example[n]]))
     print()
+
+
+model = tf.keras.Sequential([
+    encoder,
+    tf.keras.layers.Embedding(
+        input_dim=len(encoder.get_vocabulary()),
+        output_dim=64,
+        # Use masking to handle the variable sequence lengths
+        mask_zero=True),
+    tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(64)),
+    tf.keras.layers.Dense(64, activation='relu'),
+    tf.keras.layers.Dense(1)
+])
+
+
+# predict on a sample text without padding.
+
+sample_text = ('The movie was cool. The animation and the graphics '
+               'were out of this world. I would recommend this movie.')
+predictions = model.predict(np.array([sample_text]))
+print(predictions[0])
+
+
+# predict on a sample text with padding
+
+padding = "the " * 2000
+predictions = model.predict(np.array([sample_text, padding]))
+print(predictions[0])
