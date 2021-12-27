@@ -84,3 +84,19 @@ print(predictions[0])
 padding = "the " * 2000
 predictions = model.predict(np.array([sample_text, padding]))
 print(predictions[0])
+
+
+model.compile(loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
+              optimizer=tf.keras.optimizers.Adam(1e-4),
+              metrics=['accuracy'])
+
+
+history = model.fit(train_dataset, epochs=10,
+                    validation_data=test_dataset,
+                    validation_steps=30)
+
+
+test_loss, test_acc = model.evaluate(test_dataset)
+
+print('Test Loss:', test_loss)
+print('Test Accuracy:', test_acc)
