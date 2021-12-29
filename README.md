@@ -1,5 +1,5 @@
 # PythonNLP
 
-Pratice
-Change Tf-idf
-Warning about Data (specially introduce about self)
+Pratice<br>
+Change Tf-idf<br>
+Warning about Data (specially introduce about self)<br>
